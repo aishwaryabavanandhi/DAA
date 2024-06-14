@@ -1,0 +1,28 @@
+Write C programs that demonstrate the mathematical analysis of non-recursive and recursive algorithms#include <stdio.h>
+#include <stdio.h>
+void nonRecursiveAlgorithm(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        sum += i;
+    }
+    printf("Sum of numbers from 1 to %d: %d\n", n, sum);
+}
+int recursiveAlgorithm(int n) {
+    if (n == 0) {
+        return 0;
+    } else {
+        return n + recursiveAlgorithm(n - 1);
+    }
+}
+
+int main() {
+    int number = 5;
+    nonRecursiveAlgorithm(number);
+    int result = recursiveAlgorithm(number);
+    printf("Sum of numbers from 1 to %d: %d\n", number, result);
+
+    return 0;
+}
+output:
+Sum of numbers from 1 to 5: 15
+Sum of numbers from 1 to 5: 15
