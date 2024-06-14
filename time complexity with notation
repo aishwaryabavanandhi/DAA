@@ -1,0 +1,43 @@
+Write C program that demonstrates the usage of these notations by analyzing the time complexity of some example algorithms.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int findMax(int arr[], int size) {
+    int max = arr[0]; 
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > max) {
+            max = arr[i]; 
+        }
+    }
+    return max;
+}
+int linearSearch(int arr[], int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+int main() {
+    int arr[] = {5, 2, 9, 1, 7};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 9;
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+    int max = findMax(arr, size);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Time taken to find max element: %lf seconds\n", cpu_time_used);
+    start = clock();
+    int index = linearSearch(arr, size, target);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Time taken for linear search: %lf seconds\n", cpu_time_used);
+    return 0;
+}
+output:
+Time taken to find max element: 0.000001 seconds
+Time taken for linear search: 0.000001 seconds
+
