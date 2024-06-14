@@ -1,0 +1,39 @@
+Given two integer arrays nums1 and nums2, return an array of their Intersection. Each element in the result must be unique and you may return the result in any order.
+#include <stdio.h>
+int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+    int* result = (int*)malloc(sizeof(int) * (nums1Size < nums2Size ? nums1Size : nums2Size));
+    int index = 0;
+    for (int i = 0; i < nums1Size; i++) {
+        for (int j = 0; j < nums2Size; j++) {
+            if (nums1[i] == nums2[j]) {
+                result[index++] = nums1[i];
+                break;
+            }
+        }
+    }
+
+    *returnSize = index;
+    return result;
+}
+
+int main() {
+    int nums1[] = {1, 2, 2, 1};
+    int nums2[] = {2, 2};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int nums2Size = sizeof(nums2) / sizeof(nums2[0]);
+    int returnSize;
+    int* result = intersection(nums1, nums1Size, nums2, nums2Size, &returnSize);
+    printf("Intersection of the two arrays: ");
+    for (int i = 0; i < returnSize; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+    free(result);
+    return 0;
+}
+output:
+Intersection of the two arrays: 2 2 
+
+
+
+
