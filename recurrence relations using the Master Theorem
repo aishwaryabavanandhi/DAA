@@ -1,0 +1,54 @@
+Write C programs for solving recurrence relations using the Master Theorem, Substitution Method, and Iteration Method will demonstrate how to calculate the time complexity of an example recurrence relation using the specified technique.
+#include <stdio.h>
+void solveUsingMasterTheorem(int n) {
+    printf("Solving T(n) = 2T(n/2) + n using Master Theorem:\n");
+    printf("T(n) = O(n^log_b(a))\n");
+    printf("Here, a = 2, b = 2, f(n) = n\n");
+    printf("log_b(a) = log_2(2) = 1\n");
+    
+    if (n == 1) {
+        printf("T(n) = O(n^1 * log(n)) = O(n log(n))\n");
+    } else {
+        printf("T(n) = Theta(n^1 * log(n)) = Theta(n log(n))\n");
+    }
+}
+int solveUsingSubstitutionMethod(int n) {
+    if (n == 1) {
+        return 1;
+    }
+    return 2 * solveUsingSubstitutionMethod(n / 2) + n;
+}
+void solveUsingIterationMethod(int n) {
+    printf("Solving T(n) = 2T(n/2) + n using Iteration Method:\n");
+    int sum = 0;
+    int term = n;
+    while (n >= 1) {
+        sum += term;
+        term /= 2;
+        n /= 2;
+    }
+    printf("T(n) = Theta(n * log(n))\n");
+}
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    solveUsingMasterTheorem(n);
+    int result = solveUsingSubstitutionMethod(n);
+    printf("T(n) = %d\n", result);
+    solveUsingIterationMethod(n);
+    return 0;
+}
+output:
+Enter the value of n: 12
+Solving T(n) = 2T(n/2) + n using Master Theorem:
+T(n) = O(n^log_b(a))
+Here, a = 2, b = 2, f(n) = n
+log_b(a) = log_2(2) = 1
+T(n) = Theta(n^1 * log(n)) = Theta(n log(n))
+T(n) = 44
+Solving T(n) = 2T(n/2) + n using Iteration Method:
+T(n) = Theta(n * log(n))
+
+
+
