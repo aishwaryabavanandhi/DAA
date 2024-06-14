@@ -1,0 +1,44 @@
+//Given an array of integers nums, half of the integers in nums are odd, and the other half are even.
+#include <stdio.h>
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void sortArray(int nums[], int numsSize) {
+    int left = 0, right = numsSize - 1;
+
+    while (left < right) {
+        while (left < numsSize && nums[left] % 2 == 0) {
+            left++;
+        }
+        while (right >= 0 && nums[right] % 2 != 0) {
+            right--;
+        }
+        if (left < right) {
+            swap(&nums[left], &nums[right]);
+            left++;
+            right--;
+        }
+    }
+}
+
+int main() {
+    int nums[] = {3, 6, 12, 1, 5, 8};
+    int numsSize = sizeof(nums) / sizeof(nums[0]);
+
+    printf("Original array: ");
+    for (int i = 0; i < numsSize; i++)
+        printf("%d ", nums[i]);
+    printf("\n");
+    sortArray(nums, numsSize);
+    printf("Sorted array: ");
+    for (int i = 0; i < numsSize; i++)
+        printf("%d ", nums[i]);
+    printf("\n");
+
+    return 0;
+}
+output:
+Original array: 3 6 12 1 5 8 
+Sorted array: 8 6 12 1 5 3 
